@@ -44,7 +44,7 @@ for i in range(200):
 	time.sleep(1)
 
 	#ser.write(r"\053800011A28")
-	change("ON", ["4"])
+	change("ON", ["26"])
 	print("On")
 	time.sleep(1)
 
