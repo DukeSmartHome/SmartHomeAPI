@@ -12,7 +12,6 @@ def stream_handler(message):
 	a = str(message["data"]).split(" ")
 	if a[0] == "OFF" or a[0] == "ON":
 		lights.change(a[0],[a[1]])
-		print("changing with",a[0],[a[1]])
 	print(message["event"])
 	print(message["path"])
 	print(message["data"])

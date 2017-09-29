@@ -33,25 +33,3 @@ def change(status, whichLights):
             finalStr+=hex(ord(i[0])).replace("0x","")
         finalStr+="0D"
 	ser.write(unhexlify(finalStr))
-        return finalStr
-#
- # \ans = "["
-for i in range(200):
-
-	#ser.write(r"\053800011A28")
-	change("OFF", ["4"])
-	print("OFF")
-	time.sleep(1)
-
-	#ser.write(r"\053800011A28")
-	change("ON", ["4"])
-	print("On")
-	time.sleep(1)
-
-
-
-
-
-print(change("ON", ["26"]).encode())
-ser.write(change("OFF", ["26"]).encode())
-
