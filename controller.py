@@ -1,6 +1,6 @@
 import pyrebase
 import firebase_config
-import lights
+#import lights
 
 config = firebase_config.config
 
@@ -9,12 +9,14 @@ db = firebase.database()
 
 
 def stream_handler(message):
-	a = str(message["data"]).split(" ")
-	if a[0] == "OFF" or a[0] == "ON":
-		lights.change(a[0],[a[1]])
-		print("changing with",a[0],[a[1]])
-	print(message["event"])
-	print(message["path"])
-	print(message["data"])
+    light = message["path"].replace("/","")
+    status = message["data"]
+#	lights.change(status,light)
+    print("changing with",status,light)
+    
+    print(message["path"])
+    print(message["data"])
+    
+    
 
-my_stream = db.stream(stream_handler)
+my_stream = db.child("lights").stream(stream_handler)
