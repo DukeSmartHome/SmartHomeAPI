@@ -33,3 +33,6 @@ def change(status, whichLights):
           finalStr+=hex(ord(i[0])).replace("0x","")
         finalStr+="0D"
         ser.write(unhexlify(finalStr))
+change("OFF",["26"])
+
+

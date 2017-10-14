@@ -1,6 +1,6 @@
 import pyrebase
 import firebase_config
-#import lights
+import lights
 
 config = firebase_config.config
 
@@ -9,14 +9,14 @@ db = firebase.database()
 
 
 def stream_handler(message):
-    light = message["path"].replace("/","")
-    status = message["data"]
-#	lights.change(status,light)
-    print("changing with",status,light)
-    
-    print(message["path"])
-    print(message["data"])
-    
+
+	light = message["path"].replace("/","")
+	status = message["data"]
+	print("changing with",status,light)
+	if isinstance(light,int):
+		lights.change(str(status),[str(light)])
+
+
     
 
 my_stream = db.child("lights").stream(stream_handler)
