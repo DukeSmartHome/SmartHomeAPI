@@ -19,7 +19,7 @@ def change(status, whichLights):
         tempHex = light
         if (len(str(light)) == 1):
             tempHex = "0" + tempHex
-        chksum = bin((int(settings[status][0]) + int(light)) % 256 ).replace("0b","")
+        chksum = bin((int(str(settings[status][0]) + str(light))) % 256 ).replace("0b","")
         newsum = ""
         for i in list(str(chksum)):
             if i=="1":
@@ -34,5 +34,3 @@ def change(status, whichLights):
         finalStr+="0D"
         ser.write(unhexlify(finalStr))
 change("OFF",["26"])
-
-
