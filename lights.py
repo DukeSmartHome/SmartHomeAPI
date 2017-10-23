@@ -16,10 +16,10 @@ def change(status, whichLights):
     if (status != "ON"):
         status = "OFF"
     for light in whichLights:
-        tempHex = light
+        tempHex = str(light)
         if (len(str(light)) == 1):
             tempHex = "0" + tempHex
-        chksum = bin((int(str(settings[status][0]) + str(light))) % 256 ).replace("0b","")
+        chksum = bin((int(settings[status][0]) + light) % 256 ).replace("0b","")
         newsum = ""
         for i in list(str(chksum)):
             if i=="1":
@@ -27,10 +27,13 @@ def change(status, whichLights):
             else:
                 newsum += "1"
         cSum = hex(1+int(newsum,2)).replace("0x","")
-        fullStr = (settings[status][1]  + tempHex + cSum).upper()
+        fullStr = str(settings[status][1]  + tempHex + cSum).upper()
         finalStr = ""
         for i in list(fullStr):
           finalStr+=hex(ord(i[0])).replace("0x","")
         finalStr+="0D"
+        print(light, status, finalStr)
         ser.write(unhexlify(finalStr))
-change("OFF",["26"])
+
+change("ON",[15])
+change("OFF",[15])
